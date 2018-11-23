@@ -6,15 +6,22 @@ const bodyParse = require('body-parser')
 const { ObjectID } = require('mongodb')
 
 const { mongoose } = require('./db/mongoose')
-const { Todo } = require('./models/todo')
-const { User } = require('./models/user')
+//const { Todo } = require('./models/todo')
+//const { User } = require('./models/user')
 
 var app = express()
 const port = process.env.PORT || 3000
 
 app.use(bodyParse.json())
+app.get('', (req, res) => {
+    res.send({
+            status_code: 200,
+            message: 'OK',
+            data:{}
+        })
+})
 
-app.post('/todos', (req, res) => {
+/*app.post('/todos', (req, res) => {
     var todo = new Todo({
         text: req.body.text
     })
@@ -113,7 +120,7 @@ app.patch('/todos/:id', (req, res) => {
         res.status(400).send()
     })
 })
-
+*/
 app.listen(port, () => {
     console.log(`Server started on port ${port}`)
 })
